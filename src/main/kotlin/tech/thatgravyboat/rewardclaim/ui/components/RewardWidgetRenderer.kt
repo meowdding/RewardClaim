@@ -9,7 +9,7 @@ import earth.terrarium.olympus.client.layouts.Layouts
 import earth.terrarium.olympus.client.ui.UIConstants
 import earth.terrarium.olympus.client.utils.State
 import net.minecraft.client.gui.components.AbstractWidget
-import net.minecraft.client.renderer.RenderType
+import net.minecraft.client.renderer.RenderPipelines
 import net.minecraft.network.chat.Component
 import net.minecraft.util.ARGB
 import tech.thatgravyboat.rewardclaim.data.Language
@@ -17,7 +17,7 @@ import tech.thatgravyboat.rewardclaim.data.Reward
 import tech.thatgravyboat.rewardclaim.remote.DEFAULT_IMAGE_TYPE
 import tech.thatgravyboat.rewardclaim.remote.RemoteData
 
-private const val IMAGE_SIZE = 50f
+private const val IMAGE_SIZE = 50
 
 fun <T : AbstractWidget> RewardWidgetRenderer(
     reward: Reward,
@@ -58,18 +58,12 @@ fun <T : AbstractWidget> RewardWidgetRenderer(
             val type = RemoteData.get().imageTypes[image.imageType] ?: DEFAULT_IMAGE_TYPE
             val texture = BuiltinImageProviders.URL.get(image.url)
 
-            graphics.flush()
-            graphics.drawSpecial { buffer ->
-                val consumer = buffer.getBuffer(RenderType.guiTextured(texture))
-                val pose = graphics.pose().last().pose()
-
-                val maxV = if (type.center) 1f else type.width.toFloat() / type.height.toFloat()
-
-                consumer.addVertex(pose, ctx.left.toFloat(), ctx.top.toFloat(), 0f).setUv(0f, 0f).setColor(-1)
-                consumer.addVertex(pose, ctx.left.toFloat(), ctx.top.toFloat() + IMAGE_SIZE, 0f).setUv(0f, maxV).setColor(-1)
-                consumer.addVertex(pose, ctx.left.toFloat() + IMAGE_SIZE, ctx.top.toFloat() + IMAGE_SIZE, 0f).setUv(1f, maxV).setColor(-1)
-                consumer.addVertex(pose, ctx.left.toFloat() + IMAGE_SIZE, ctx.top.toFloat(), 0f).setUv(1f, 0f).setColor(-1)
-            }
+            val maxV = if (type.center) 1f else type.width.toFloat() / type.height.toFloat()
+            graphics.blit(
+                texture,
+                ctx.left, ctx.top, ctx.left + IMAGE_SIZE, ctx.top + IMAGE_SIZE,
+                0f, 1f, 0f, maxV
+            )
         }.withPadding(5),
         LayoutWidgetRenderer<T>(text, mouse = false).withPadding(5, 5, 5, IMAGE_SIZE.toInt() + 10),
     )
@@ -86,7 +80,7 @@ fun <T : AbstractWidget> RewardButtonWidgetRenderer(
             val texture = if (state.get() == reward) UIConstants.PRIMARY_BUTTON else UIConstants.DARK_BUTTON
 
             graphics.blitSprite(
-                RenderType::guiTextured, texture.get(ctx.widget.active, ctx.widget.isHoveredOrFocused),
+                RenderPipelines.GUI_TEXTURED, texture.get(ctx.widget.active, ctx.widget.isHoveredOrFocused),
                 ctx.x, ctx.y, ctx.width, ctx.height
             )
         },

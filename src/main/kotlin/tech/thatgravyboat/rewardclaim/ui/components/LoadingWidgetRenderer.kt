@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.AbstractWidget
 import net.minecraft.util.ARGB
 import tech.thatgravyboat.rewardclaim.Utils.drawRoundedRec
-import tech.thatgravyboat.rewardclaim.Utils.pushPop
+import tech.thatgravyboat.rewardclaim.Utils.translated
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -20,9 +20,7 @@ class LoadingWidgetRenderer<T : AbstractWidget> : WidgetRenderer<T> {
     override fun render(graphics: GuiGraphics, ctx: WidgetRendererContext<T>, partialTick: Float) {
         frames++
 
-        graphics.pushPop {
-            translate(ctx.x.toFloat(), ctx.y.toFloat(), 0f)
-
+        graphics.translated(ctx.x.toFloat(), ctx.y.toFloat()) {
             val time = (frames % 360) * SPEED
 
             for (degree in 0 until 360 step 30) {
