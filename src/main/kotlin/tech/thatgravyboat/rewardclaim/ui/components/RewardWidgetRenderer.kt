@@ -26,13 +26,13 @@ fun <T : AbstractWidget> RewardWidgetRenderer(
 
     val image = reward.image
 
-    val text = Layouts.column()
-        .withChild(Widgets.text(reward.getDisplayName(language)) {
+    val text = Layouts.column().apply {
+        withChild(Widgets.text(reward.getDisplayName(language)) {
             it.withShadow()
             it.withLeftAlignment()
             it.withColor(MinecraftColors.WHITE)
         })
-        .withChild(RenderWidget { graphics, widget, _ ->
+        withChild(RenderWidget { graphics, widget, _ ->
             graphics.fill(
                 widget.x,
                 widget.y + 1,
@@ -41,16 +41,19 @@ fun <T : AbstractWidget> RewardWidgetRenderer(
                 ARGB.opaque(MinecraftColors.GRAY.value)
             )
         }.withSize(0, 4))
-        .withChild(Widgets.text(Component.literal("Rarity: ").append(reward.rarity.getDisplayName(language))) {
+        withChild(Widgets.text(Component.literal("Rarity: ").append(reward.rarity.getDisplayName(language))) {
             it.withShadow()
             it.withLeftAlignment()
             it.withColor(MinecraftColors.WHITE)
         })
-        .withChild(Widgets.text("Amount: §6${reward.amount}") {
-            it.withShadow()
-            it.withLeftAlignment()
-            it.withColor(MinecraftColors.WHITE)
-        })
+        if (reward.amount > 0) {
+            withChild(Widgets.text("Amount: §6${reward.amount}") {
+                it.withShadow()
+                it.withLeftAlignment()
+                it.withColor(MinecraftColors.WHITE)
+            })
+        }
+    }
 
     return WidgetRenderers.layered<T>(
         WidgetRenderer<T> { graphics, ctx, _ ->

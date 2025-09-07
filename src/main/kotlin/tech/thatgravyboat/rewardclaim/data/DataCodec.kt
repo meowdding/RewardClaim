@@ -30,7 +30,7 @@ object DataCodec {
         Codec.STRING.fieldOf("link").forGetter(Ad::link)
     ).apply(it, ::Ad) }
 
-    val CODEC = RecordCodecBuilder.create { it.group(
+    val CODEC: Codec<Data> = RecordCodecBuilder.create { it.group(
         REWARD_CODEC.listOf().fieldOf("rewards").forGetter(Data::rewards),
         STREAK_CODEC.fieldOf("dailyStreak").forGetter(Data::dailyStreak),
         Codec.INT.fieldOf("activeAd").forGetter(Data::activeAd),
