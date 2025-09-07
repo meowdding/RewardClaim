@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture
 
 val DEFAULT_IMAGE_TYPE = RemoteImageType(142, 100, false)
 
-data class RemoteImageType(val height: Int, val width: Int, val center: Boolean)
+data class RemoteImageType(val height: Int, val width: Int, val center: Boolean, val padding: Int = 0)
 data class RemoteImage(val url: URI, val imageType: String)
 
 data class RemoteData(

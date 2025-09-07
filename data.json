@@ -3,7 +3,8 @@
         "small": {
             "width": 50,
             "height": 50,
-            "center": true
+            "center": true,
+            "padding": 4
         }
     },
     "textures": {

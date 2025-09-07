@@ -13,7 +13,8 @@ object RemoteCodec {
     private val IMAGE_TYPE_CODEC: Codec<RemoteImageType> = RecordCodecBuilder.create { it.group(
         Codec.INT.optionalFieldOf("height", 0).forGetter(RemoteImageType::height),
         Codec.INT.optionalFieldOf("width", 0).forGetter(RemoteImageType::width),
-        Codec.BOOL.optionalFieldOf("center", false).forGetter(RemoteImageType::center)
+        Codec.BOOL.optionalFieldOf("center", false).forGetter(RemoteImageType::center),
+        Codec.INT.optionalFieldOf("padding", 0).forGetter(RemoteImageType::padding)
     ).apply(it, ::RemoteImageType) }
 
     private val IMAGE_CODEC: Codec<RemoteImage> = RecordCodecBuilder.create { it.group(

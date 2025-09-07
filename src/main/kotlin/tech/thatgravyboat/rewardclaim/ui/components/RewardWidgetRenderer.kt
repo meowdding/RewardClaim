@@ -61,11 +61,12 @@ fun <T : AbstractWidget> RewardWidgetRenderer(
             val maxV = if (type.center) 1f else type.width.toFloat() / type.height.toFloat()
             graphics.blit(
                 texture,
-                ctx.left, ctx.top, ctx.left + IMAGE_SIZE, ctx.top + IMAGE_SIZE,
+                ctx.left + type.padding, ctx.top + type.padding,
+                ctx.left + IMAGE_SIZE - type.padding * 2, ctx.top + IMAGE_SIZE - type.padding * 2,
                 0f, 1f, 0f, maxV
             )
         }.withPadding(5),
-        LayoutWidgetRenderer<T>(text, mouse = false).withPadding(5, 5, 5, IMAGE_SIZE.toInt() + 10),
+        LayoutWidgetRenderer<T>(text, mouse = false).withPadding(5, 5, 5, IMAGE_SIZE + 10),
     )
 }
 
