@@ -10,7 +10,7 @@ fabric = "0.133.13+1.21.9"
 fabrickotlin = "1.13.3+kotlin.2.1.21"
 hypixelapi = "1.0.1+build.1+mc1.21"
 olympus = "1.6.0"
-rlib = "3.9.0"
+rlib = "3.9.1"
 
 # Dev Dependencies
 devauth = "1.2.1"
