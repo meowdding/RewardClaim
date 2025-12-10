@@ -80,7 +80,7 @@ fun <T : AbstractWidget> RewardButtonWidgetRenderer(
 ): WidgetRenderer<T> {
 
     return WidgetRenderers.layered<T>(
-        WidgetRenderer<T> { graphics, ctx, _ ->
+        { graphics, ctx, _ ->
             val texture = if (state.get() == reward) UIConstants.PRIMARY_BUTTON else UIConstants.DARK_BUTTON
 
             graphics.blitSprite(

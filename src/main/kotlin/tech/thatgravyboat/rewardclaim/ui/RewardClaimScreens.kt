@@ -9,6 +9,7 @@ import net.minecraft.client.gui.components.AbstractWidget
 import net.minecraft.network.chat.ClickEvent
 import net.minecraft.network.chat.CommonComponents
 import net.minecraft.network.chat.Component
+import tech.thatgravyboat.rewardclaim.ScreenActions
 import tech.thatgravyboat.rewardclaim.data.Ad
 import tech.thatgravyboat.rewardclaim.data.DataManager
 import tech.thatgravyboat.rewardclaim.data.RewardState
@@ -117,9 +118,7 @@ object RewardClaimScreens {
 
         val modal = Modals.action()
         modal.withTitle(Component.literal("Reward Claim"))
-        modal.withContent { width -> MultilineTextWidget(text, width)
-            .clickActionCallback { style -> mc.screen?.handleComponentClicked(style) }
-        }
+        modal.withContent { width -> MultilineTextWidget(text, width).clickActionCallback(ScreenActions::handleClick) }
 
         modal.withAction(Widgets.button()
             .withRenderer(WidgetRenderers.text(Component.literal("Close")))

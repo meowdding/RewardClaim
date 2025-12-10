@@ -51,7 +51,6 @@ dependencies {
     include(libs.rlib)
 
     modRuntimeOnly(libs.devauth)
-    modRuntimeOnly(libs.modmenu)
 }
 
 tasks.processResources {
