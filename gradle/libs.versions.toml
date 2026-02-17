@@ -13,7 +13,7 @@ olympus = "1.7.0"
 rlib = "3.11.0"
 
 # Dev Dependencies
-devauth = "1.2.1"
+devauth = "1.2.2"
 modmenu = "16.0.0-rc.1"
 
 [libraries]
