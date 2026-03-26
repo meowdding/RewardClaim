@@ -1,5 +1,6 @@
 package tech.thatgravyboat.rewardclaim.data
 
+import tech.thatgravyboat.rewardclaim.IO_EXECUTOR
 import tech.thatgravyboat.rewardclaim.remote.RemoteData
 import java.net.CookieManager
 import java.net.URI
@@ -22,7 +23,7 @@ object DataManager {
         .cookieHandler(cookies)
         .build()
 
-    fun get(id: String): CompletableFuture<RewardState> = CompletableFuture.supplyAsync {
+    fun get(id: String): CompletableFuture<RewardState> = CompletableFuture.supplyAsync({
         val request = HttpRequest.newBuilder(URI.create("$URL$id"))
             .GET()
             .version(HttpClient.Version.HTTP_2)
@@ -36,9 +37,9 @@ object DataManager {
         val i18n = I18N_REGEX.find(output) ?: error("Translations not found in response for ID: $id")
 
         RewardState.get(security, data, i18n)
-    }
+    }, IO_EXECUTOR)
 
-    fun claim(state: RewardState, reward: Reward): CompletableFuture<Void> = CompletableFuture.runAsync {
+    fun claim(state: RewardState, reward: Reward): CompletableFuture<Void> = CompletableFuture.runAsync({
         val data = state.data
         val selected = data.rewards.indexOfFirst { it == reward }
         val url = "$CLAIM_URL?option=$selected&id=${data.id}&activeAd=${data.activeAd}&_csrf=${state.token}&watchedFallback=false"
@@ -58,5 +59,5 @@ object DataManager {
                 "response: ${res.body()}"
             )
         }
-    }
+    }, IO_EXECUTOR)
 }

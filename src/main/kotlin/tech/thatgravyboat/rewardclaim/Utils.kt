@@ -5,8 +5,13 @@ import earth.terrarium.olympus.client.components.compound.LayoutWidget
 import earth.terrarium.olympus.client.pipelines.RoundedRectangle
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
+
+internal val IO_EXECUTOR = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors().coerceAtLeast(1) * 2) { runnable ->
+    Thread(runnable, "RewardClaim-IO").apply { isDaemon = true }
+}
 
 val mc: Minecraft get() = Minecraft.getInstance()
 
