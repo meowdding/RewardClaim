@@ -1,5 +1,6 @@
 package tech.thatgravyboat.rewardclaim.data
 
+import tech.thatgravyboat.rewardclaim.Threading
 import tech.thatgravyboat.rewardclaim.remote.RemoteData
 import java.net.CookieManager
 import java.net.URI
@@ -22,7 +23,7 @@ object DataManager {
         .cookieHandler(cookies)
         .build()
 
-    fun get(id: String): CompletableFuture<RewardState> = CompletableFuture.supplyAsync {
+    fun get(id: String): CompletableFuture<RewardState> = Threading.supply {
         val request = HttpRequest.newBuilder(URI.create("$URL$id"))
             .GET()
             .version(HttpClient.Version.HTTP_2)
@@ -38,7 +39,7 @@ object DataManager {
         RewardState.get(security, data, i18n)
     }
 
-    fun claim(state: RewardState, reward: Reward): CompletableFuture<Void> = CompletableFuture.runAsync {
+    fun claim(state: RewardState, reward: Reward): CompletableFuture<Void> = Threading.run {
         val data = state.data
         val selected = data.rewards.indexOfFirst { it == reward }
         val url = "$CLAIM_URL?option=$selected&id=${data.id}&activeAd=${data.activeAd}&_csrf=${state.token}&watchedFallback=false"

@@ -9,6 +9,7 @@ import tech.thatgravyboat.rewardclaim.ui.RewardClaimScreens
 object RewardClaimClient : ClientModInitializer {
 
     override fun onInitializeClient() {
+        RemoteData.init()
         ClientReceiveMessageEvents.ALLOW_GAME.register { message, _ ->
             val remote = RemoteData.get()
             if (remote.disabled) return@register true

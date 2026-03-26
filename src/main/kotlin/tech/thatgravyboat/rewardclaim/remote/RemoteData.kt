@@ -3,8 +3,8 @@ package tech.thatgravyboat.rewardclaim.remote
 import com.mojang.serialization.JsonOps
 import com.teamresourceful.resourcefullib.common.utils.WebUtils
 import net.minecraft.util.GsonHelper
+import tech.thatgravyboat.rewardclaim.Threading
 import java.net.URI
-import java.util.concurrent.CompletableFuture
 
 val DEFAULT_IMAGE_TYPE = RemoteImageType(142, 100, false)
 
@@ -25,8 +25,8 @@ data class RemoteData(
         private val DEFAULT_REMOTE_DATA = RemoteData()
         private var instance: RemoteData? = null
 
-        init {
-            CompletableFuture.runAsync {
+        fun init() {
+            Threading.run {
                 val data = WebUtils.get("https://raw.githubusercontent.com/ThatGravyBoat/RewardClaim/master/data.json") ?: error("Failed to fetch remote data.")
                 val json = GsonHelper.parse(data)
                 instance = RemoteCodec.CODEC.parse(JsonOps.INSTANCE, json).orThrow

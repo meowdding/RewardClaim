@@ -5,15 +5,33 @@ import earth.terrarium.olympus.client.components.compound.LayoutWidget
 import earth.terrarium.olympus.client.pipelines.RoundedRectangle
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 
 val mc: Minecraft get() = Minecraft.getInstance()
 
-fun schedule(duration: Duration, block: () -> Unit) {
-    Scheduling.schedule({
-        mc.schedule { block() }
-    }, duration.inWholeMilliseconds, TimeUnit.MILLISECONDS)
+object Threading {
+    private val executor = Executors.newSingleThreadExecutor {
+        val thread = Thread(it, "Reward Claim")
+        thread.isDaemon = true
+        thread
+    }
+
+    fun <T> supply(block: () -> T): CompletableFuture<T> {
+        return CompletableFuture.supplyAsync(block, executor)
+    }
+
+    fun run(block: () -> Unit): CompletableFuture<Void> {
+        return CompletableFuture.runAsync(block, executor)
+    }
+
+    fun schedule(duration: Duration, block: () -> Unit) {
+        Scheduling.schedule({
+            mc.schedule { block() }
+        }, duration.inWholeMilliseconds, TimeUnit.MILLISECONDS)
+    }
 }
 
 object Utils {

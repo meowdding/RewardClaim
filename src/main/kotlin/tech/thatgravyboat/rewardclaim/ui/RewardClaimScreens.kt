@@ -10,11 +10,11 @@ import net.minecraft.network.chat.ClickEvent
 import net.minecraft.network.chat.CommonComponents
 import net.minecraft.network.chat.Component
 import tech.thatgravyboat.rewardclaim.ScreenActions
+import tech.thatgravyboat.rewardclaim.Threading
 import tech.thatgravyboat.rewardclaim.data.Ad
 import tech.thatgravyboat.rewardclaim.data.DataManager
 import tech.thatgravyboat.rewardclaim.data.RewardState
 import tech.thatgravyboat.rewardclaim.mc
-import tech.thatgravyboat.rewardclaim.schedule
 import tech.thatgravyboat.rewardclaim.ui.components.LoadingWidgetRenderer
 import tech.thatgravyboat.rewardclaim.ui.components.asWidget
 import java.io.PrintWriter
@@ -61,7 +61,7 @@ object RewardClaimScreens {
         if (data.skippable) {
             mc.setScreen(RewardClaimScreen(state))
         } else {
-            schedule((data.ad?.duration ?: 30).seconds) {
+            Threading.schedule((data.ad?.duration ?: 30).seconds) {
                 if (mc.screen !is RewardClaimModal) return@schedule
                 open(data.ad, true) {
                     mc.setScreen(RewardClaimScreen(state))
