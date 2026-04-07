@@ -2,7 +2,7 @@ package tech.thatgravyboat.rewardclaim.ui.components
 
 import earth.terrarium.olympus.client.components.base.renderer.WidgetRenderer
 import earth.terrarium.olympus.client.components.base.renderer.WidgetRendererContext
-import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.gui.GuiGraphicsExtractor
 import net.minecraft.client.gui.components.AbstractWidget
 import net.minecraft.util.ARGB
 import tech.thatgravyboat.rewardclaim.Utils.drawRoundedRec
@@ -17,7 +17,7 @@ class LoadingWidgetRenderer<T : AbstractWidget> : WidgetRenderer<T> {
 
     private var frames = 0L
 
-    override fun render(graphics: GuiGraphics, ctx: WidgetRendererContext<T>, partialTick: Float) {
+    override fun render(graphics: GuiGraphicsExtractor, ctx: WidgetRendererContext<T>, partialTick: Float) {
         frames++
 
         graphics.translated(ctx.x.toFloat(), ctx.y.toFloat()) {

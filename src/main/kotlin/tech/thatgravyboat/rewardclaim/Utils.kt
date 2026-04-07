@@ -4,7 +4,7 @@ import com.teamresourceful.resourcefullib.common.utils.Scheduling
 import earth.terrarium.olympus.client.components.compound.LayoutWidget
 import earth.terrarium.olympus.client.pipelines.RoundedRectangle
 import net.minecraft.client.Minecraft
-import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.gui.GuiGraphicsExtractor
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -36,14 +36,14 @@ object Threading {
 
 object Utils {
 
-    inline fun GuiGraphics.translated(x: Number, y: Number, block: () -> Unit) {
+    inline fun GuiGraphicsExtractor.translated(x: Number, y: Number, block: () -> Unit) {
         this.pose().pushMatrix()
         this.pose().translate(x.toFloat(), y.toFloat())
         block()
         this.pose().popMatrix()
     }
 
-    fun GuiGraphics.drawRoundedRec(
+    fun GuiGraphicsExtractor.drawRoundedRec(
         x: Int, y: Int, width: Int, height: Int,
         backgroundColor: Int, borderColor: Int = backgroundColor,
         borderSize: Int = 0, radius: Int = 0,

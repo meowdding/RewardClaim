@@ -1,6 +1,5 @@
 package tech.thatgravyboat.rewardclaim.ui
 
-import com.teamresourceful.resourcefullib.client.screens.BaseCursorScreen
 import com.teamresourceful.resourcefullib.common.color.Color
 import earth.terrarium.olympus.client.components.Widgets
 import earth.terrarium.olympus.client.components.buttons.Button
@@ -15,6 +14,7 @@ import net.minecraft.client.gui.layouts.FrameLayout
 import net.minecraft.client.gui.layouts.Layout
 import net.minecraft.client.gui.layouts.LayoutSettings
 import net.minecraft.client.gui.layouts.LinearLayout
+import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
 import tech.thatgravyboat.rewardclaim.Utils.withVerticalLayout
 import tech.thatgravyboat.rewardclaim.data.DataManager
@@ -26,7 +26,7 @@ import tech.thatgravyboat.rewardclaim.ui.components.RewardButtonWidgetRenderer
 import tech.thatgravyboat.rewardclaim.ui.components.RewardWidgetRenderer
 import tech.thatgravyboat.rewardclaim.ui.components.asWidget
 
-class RewardClaimScreen(private val state: RewardState) : BaseCursorScreen(Component.empty()) {
+class RewardClaimScreen(private val state: RewardState) : Screen(Component.empty()) {
 
     private val selected = State.empty<Reward>()
 

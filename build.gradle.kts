@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     idea
-    kotlin("jvm") version "2.0.20"
+    kotlin("jvm") version "2.3.0"
     alias(libs.plugins.loom)
 }
 
@@ -11,7 +11,7 @@ base {
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
     withSourcesJar()
 }
 
@@ -32,25 +32,21 @@ repositories {
 
 dependencies {
     minecraft(libs.minecraft)
-    @Suppress("UnstableApiUsage")
-    mappings(loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-1.21.3:2024.12.07@zip")
-    })
-    modImplementation(libs.loader)
-    modImplementation(libs.fabrickotlin)
-    modImplementation(libs.fabric)
 
-    modImplementation(libs.hypixelapi)
-    modImplementation(libs.modapi)
-    modImplementation(libs.olympus)
-    modImplementation(libs.rlib)
+    implementation(libs.loader)
+    implementation(libs.fabrickotlin)
+    implementation(libs.fabric)
+
+    implementation(libs.hypixelapi)
+    implementation(libs.modapi)
+    implementation(libs.olympus)
+    implementation(libs.rlib)
 
     include(libs.hypixelapi)
     include(libs.olympus)
     include(libs.rlib)
 
-    modRuntimeOnly(libs.devauth)
+    runtimeOnly(libs.devauth)
 }
 
 tasks.processResources {
@@ -71,11 +67,11 @@ tasks.processResources {
 
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
-    options.release.set(21)
+    options.release.set(25)
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-    compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
+    compilerOptions.jvmTarget.set(JvmTarget.JVM_25)
 }
 
 idea {

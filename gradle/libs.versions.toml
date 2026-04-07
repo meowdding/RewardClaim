@@ -1,20 +1,20 @@
 [versions]
 
 # Minecraft
-minecraft = "1.21.11"
-loom = "1.14-SNAPSHOT"
-loader = "0.18.2"
+minecraft = "26.1"
+loom = "1.15-SNAPSHOT"
+loader = "0.18.4"
 
 # Dependencies
-fabric = "0.139.4+1.21.11"
-fabrickotlin = "1.13.3+kotlin.2.1.21"
-hypixelapi = "1.0.1+build.1+mc1.21"
-olympus = "1.7.0"
-rlib = "3.11.0"
+fabric = "0.145.0+26.1"
+fabrickotlin = "1.13.9+kotlin.2.3.10"
+hypixelapi = "1.0.2+build.1+mc26.1"
+olympus = "1.8.0"
+rlib = "4.0.0"
 
 # Dev Dependencies
 devauth = "1.2.2"
-modmenu = "16.0.0-rc.1"
+modmenu = "18.0.0-alpha.6"
 
 [libraries]
 
@@ -23,13 +23,13 @@ loader = { module = "net.fabricmc:fabric-loader", version.ref = "loader" }
 fabric = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric" }
 fabrickotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabrickotlin" }
 hypixelapi = { module = "maven.modrinth:hypixel-mod-api", version.ref = "hypixelapi" }
-modapi = { module = "net.hypixel:mod-api", version = "1.0.1" }
-olympus = { module = "earth.terrarium.olympus:olympus-fabric-1.21.11", version.ref = "olympus" }
-rlib = { module = "com.teamresourceful.resourcefullib:resourcefullib-fabric-1.21.11", version.ref = "rlib" }
+modapi = { module = "net.hypixel:mod-api", version = "1.0.2" }
+olympus = { module = "earth.terrarium.olympus:olympus-fabric-26.1", version.ref = "olympus" }
+rlib = { module = "com.teamresourceful.resourcefullib:resourcefullib-fabric-26.1", version.ref = "rlib" }
 
 devauth = { module = "me.djtheredstoner:DevAuth-fabric", version.ref = "devauth" }
 modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
 
 [plugins]
 
-loom = { id = "fabric-loom", version.ref = "loom" }
+loom = { id = "net.fabricmc.fabric-loom", version.ref = "loom" }
