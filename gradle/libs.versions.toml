@@ -1,16 +1,16 @@
 [versions]
 
 # Minecraft
-minecraft = "26.1"
+minecraft = "26.2"
 loom = "1.15-SNAPSHOT"
 loader = "0.18.4"
 
 # Dependencies
-fabric = "0.145.0+26.1"
+fabric = "0.154.0+26.2"
 fabrickotlin = "1.13.9+kotlin.2.3.10"
 hypixelapi = "1.0.2+build.1+mc26.1"
-olympus = "1.8.0"
-rlib = "4.0.0"
+olympus = "1.9.0"
+rlib = "5.0.2"
 
 # Dev Dependencies
 devauth = "1.2.2"
@@ -24,8 +24,8 @@ fabric = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric"
 fabrickotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabrickotlin" }
 hypixelapi = { module = "maven.modrinth:hypixel-mod-api", version.ref = "hypixelapi" }
 modapi = { module = "net.hypixel:mod-api", version = "1.0.2" }
-olympus = { module = "earth.terrarium.olympus:olympus-fabric-26.1", version.ref = "olympus" }
-rlib = { module = "com.teamresourceful.resourcefullib:resourcefullib-fabric-26.1", version.ref = "rlib" }
+olympus = { module = "earth.terrarium.olympus:olympus-fabric-26.2", version.ref = "olympus" }
+rlib = { module = "com.teamresourceful.resourcefullib:resourcefullib-fabric-26.2", version.ref = "rlib" }
 
 devauth = { module = "me.djtheredstoner:DevAuth-fabric", version.ref = "devauth" }
 modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }

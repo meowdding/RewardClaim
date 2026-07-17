@@ -64,7 +64,7 @@ class RewardClaimScreen(private val state: RewardState) : Screen(Component.empty
                         if (exception != null) {
                             RewardClaimScreens.open(exception, "claim the reward")
                         } else {
-                            mc.screen?.onClose()
+                            mc.gui.screen()?.onClose()
                         }
                     }
                 }

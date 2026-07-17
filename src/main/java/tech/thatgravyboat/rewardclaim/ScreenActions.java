@@ -15,6 +15,6 @@ public class ScreenActions extends Screen {
         var mc = Minecraft.getInstance();
         var event = style.getClickEvent();
         if (event == null) return;
-        defaultHandleClickEvent(event, mc, mc.screen);
+        defaultHandleClickEvent(event, mc, mc.gui.screen());
     }
 }

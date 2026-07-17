@@ -9,5 +9,5 @@ class RewardClaimModal(builder: Builder) : ActionModal(builder, null) {
 }
 
 fun ActionModal.Builder.openWithoutBackground() {
-    mc.setScreen(RewardClaimModal(this))
+    mc.gui.setScreen(RewardClaimModal(this))
 }
