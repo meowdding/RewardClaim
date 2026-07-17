@@ -4,7 +4,7 @@
     "package": "tech.thatgravyboat.rewardclaim.mixins",
     "compatibilityLevel": "JAVA_21",
     "client": [
-        "MinecraftMixin"
+      "GuiMixin"
     ],
     "injectors": {
         "defaultRequire": 1

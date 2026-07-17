@@ -30,7 +30,7 @@ object RewardClaimScreens {
 
     fun close() {
         openTime = 0L
-        mc.setScreen(null)
+        mc.gui.setScreen(null)
     }
 
     fun open(id: String) {
@@ -38,7 +38,7 @@ object RewardClaimScreens {
 
         DataManager.get(id).handle { state, exception ->
             mc.schedule {
-                if (mc.screen !is RewardClaimModal) return@schedule
+                if (mc.gui.screen() !is RewardClaimModal) return@schedule
 
                 if (exception != null) {
                     open(exception, "open the reward claim screen")
@@ -59,12 +59,12 @@ object RewardClaimScreens {
     fun open(state: RewardState) {
         val data = state.data
         if (data.skippable) {
-            mc.setScreen(RewardClaimScreen(state))
+            mc.gui.setScreen(RewardClaimScreen(state))
         } else {
             Threading.schedule((data.ad?.duration ?: 30).seconds) {
-                if (mc.screen !is RewardClaimModal) return@schedule
+                if (mc.gui.screen() !is RewardClaimModal) return@schedule
                 open(data.ad, true) {
-                    mc.setScreen(RewardClaimScreen(state))
+                    mc.gui.setScreen(RewardClaimScreen(state))
                 }
             }
             open(data.ad, false)
