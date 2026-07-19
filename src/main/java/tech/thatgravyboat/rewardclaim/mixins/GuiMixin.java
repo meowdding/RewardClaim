@@ -1,6 +1,5 @@
 package tech.thatgravyboat.rewardclaim.mixins;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.BookViewScreen;
@@ -15,7 +14,7 @@ import tech.thatgravyboat.rewardclaim.ui.RewardClaimScreens;
 @Mixin(Gui.class)
 public class GuiMixin {
 
-    @Shadow @Nullable public Screen screen;
+    @Shadow @Nullable private Screen screen;
 
     @Inject(method = "setScreen", at = @At("HEAD"), cancellable = true)
     private void rewardclaim$setScreen(Screen screen, CallbackInfo ci) {

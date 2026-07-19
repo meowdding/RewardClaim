@@ -2,19 +2,19 @@
 
 # Minecraft
 minecraft = "26.2"
-loom = "1.15-SNAPSHOT"
-loader = "0.18.4"
+loom = "1.17-SNAPSHOT"
+loader = "0.19.3"
 
 # Dependencies
-fabric = "0.154.0+26.2"
-fabrickotlin = "1.13.9+kotlin.2.3.10"
+fabric = "0.155.0+26.2"
+fabrickotlin = "1.13.13+kotlin.2.4.10"
 hypixelapi = "1.0.2+build.1+mc26.1"
 olympus = "1.9.0"
 rlib = "5.0.2"
 
 # Dev Dependencies
 devauth = "1.2.2"
-modmenu = "18.0.0-alpha.6"
+modmenu = "20.0.1"
 
 [libraries]
 
