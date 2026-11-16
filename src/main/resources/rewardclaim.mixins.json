@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "tech.thatgravyboat.rewardclaim.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [],
+  "client": [
+    "MinecraftMixin",
+    "GuiNewChatMixin"
+  ],
+  "injectors": {
+    "defaultRequireInvokedTarget": false
+  }
+}
