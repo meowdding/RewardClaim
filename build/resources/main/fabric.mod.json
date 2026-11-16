@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "rewardclaim",
+  "version": "1.0.0+1.8.9",
+  "name": "Reward Claim",
+  "description": "Automatically claim Hypixel rewards when you join a server",
+  "icon": "reward-claim-logo.png",
+  "license": "ARR",
+  "authors": [
+    "ThatGravyBoat",
+    "Foui"
+  ],
+  "contact": {
+    "homepage": "https://github.com/foufoufoui",
+    "sources": "https://github.com/ThatGravyBoat/RewardClaim"
+  },
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "tech.thatgravyboat.rewardclaim.RewardClaimClient"
+      }
+    ]
+  },
+  "mixins": [
+    "rewardclaim.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.8.9"
+  },
+  "suggests": {
+    "oneconfig": "*"
+  }
+}
